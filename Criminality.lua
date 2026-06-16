@@ -1,0 +1,51 @@
+local UI = loadstring(game:HttpGet("https://pastebin.com/raw/mjeRdSZY"))()
+local ESP = loadstring(game:HttpGet("https://pastebin.com/raw/RifZep6V"))()
+local Aimlock = loadstring(game:HttpGet("https://pastebin.com/raw/Mk2Sim30"))()
+ 
+-- Start
+UI.init()
+ESP.init()
+Aimlock.init()
+ 
+-- ESP Section
+local SectionESP = UI.createSection("ESP")
+local TitleESP = UI.createSectionTitle("ESP", SectionESP)
+local ToggleESP = UI.createToggleButton("ESP", false, SectionESP, function(state)
+    ESP.ToggleESP(state)
+end)
+local SelectESP = UI.createTextBox("Select", "Write player's name:",SectionESP, function(partialName)
+    ESP.MarkPlayer(partialName)
+end)
+local ResetESP = UI.createButton("Reset", "Reset ESP", SectionESP, function()
+    ESP.ResetESP()
+end)
+local FindAKSU = UI.createButton("FindAksu", "Find AKS-74U", SectionESP,function()
+    ESP.FindAKSU()
+end)
+local MarkFriends= UI.createButton("MarkFriends", "Mark Friends", SectionESP,function()
+    ESP.MarkFriends()
+end)
+ 
+-- Aimlock Section
+local SectionAimlock = UI.createSection("Aimlock")
+local TitleAimlock = UI.createSectionTitle("Aimbot", SectionAimlock)
+local ToggleAimlock = UI.createToggleButton("Aimlock", false, SectionAimlock, function(state)
+    Aimlock.ToggleAimlock(state)
+end)
+ 
+-- Player Section
+local SectionPlayer = UI.createSection("Player")
+local TitlePlayer = UI.createSectionTitle("Player", SectionPlayer )
+local SelectFieldOfView = UI.createTextBox("Select", "Field of View:", SectionPlayer, function(text)
+    workspace.CurrentCamera.FieldOfView = tonumber(text) or 70
+end)
+local EasyLockpick = UI.createToggleButton("EasyLockpicks", false, SectionPlayer, function(state)
+    print("Not working yet.")
+end)
+ 
+-- Lighting Section
+local SectionLight = UI.createSection("Light")
+local TitleLight = UI.createSectionTitle("Light", SectionLight)
+local BetterLight = UI.createToggleButton("BetterLight", false, SectionLight, function(state)
+    print("Upgrading light!")
+end)
