@@ -56,6 +56,6 @@ end)
 -- Lighting Section
 local SectionLight = UI.createSection("Light")
 local TitleLight = UI.createSectionTitle("Light", SectionLight)
-local BetterLight = UI.createToggleButton("BetterLight", false, SectionLight, function(state)
-    Misc.BetterLight(state)
+local BetterLight = UI.createButton("BetterLight", "Better light", SectionLight, function()
+    Misc.BetterLight()
 end)

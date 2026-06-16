@@ -14,12 +14,13 @@ function Misc.init()
 
 end
 
-function Misc.BetterLight(state:boolean)
-    if state then
+function Misc.BetterLight()
+    Lighting.EnvironmentDiffuseScale = 1
+    Lighting.EnvironmentSpecularScale = 1
+    Lighting.ExposureCompensation = 2
 
-    else
-
-    end
+    if Lighting:FindFirstAncestorOfClass("Atmosphere") then Lighting:FindFirstAncestorOfClass("Atmosphere"):Destroy() end
+    if Lighting:FindFirstAncestorOfClass("Clouds")     then Lighting:FindFirstAncestorOfClass("Clouds"):Destroy()     end
 end
 
 function Misc.RemoveHelmetUI()
