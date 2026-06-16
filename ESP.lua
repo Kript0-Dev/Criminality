@@ -25,6 +25,10 @@ function ESP.init()
 		Highlight.OutlineTransparency = 0.5
 		Highlight.Enabled = ESP_Enabled
 		Highlight.Parent = character
+
+        if LocalPlayer:IsFriendsWithAsync(player.UserId) then
+            Highlight.OutlineColor = Color3.fromRGB(30, 144, 255)
+        end
 		
 		Highlight_Table[player] = Highlight
 	end

@@ -1,6 +1,6 @@
-local UI = loadstring(game:HttpGet("https://pastebin.com/raw/mjeRdSZY"))()
-local ESP = loadstring(game:HttpGet("https://pastebin.com/raw/RifZep6V"))()
-local Aimlock = loadstring(game:HttpGet("https://pastebin.com/raw/Mk2Sim30"))()
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/UIFramework.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/ESP.lua"))()
+local Aimlock = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/Aimlock.lua"))()
  
 -- Start
 UI.init()
@@ -32,6 +32,9 @@ local TitleAimlock = UI.createSectionTitle("Aimbot", SectionAimlock)
 local ToggleAimlock = UI.createToggleButton("Aimlock", false, SectionAimlock, function(state)
     Aimlock.ToggleAimlock(state)
 end)
+local NoRecoil = UI.createToggleButton("NoRecoil", false, SectionAimlock, function(state)
+    print("Not working yet.")
+end)
  
 -- Player Section
 local SectionPlayer = UI.createSection("Player")
@@ -40,6 +43,12 @@ local SelectFieldOfView = UI.createTextBox("Select", "Field of View:", SectionPl
     workspace.CurrentCamera.FieldOfView = tonumber(text) or 70
 end)
 local EasyLockpick = UI.createToggleButton("EasyLockpicks", false, SectionPlayer, function(state)
+    print("Not working yet.")
+end)
+local AntiFlash = UI.createToggleButton("Anti-Flashbang", false, SectionPlayer, function(state)
+    print("Not working yet.")
+end)
+local RemoveCascoUI = UI.createButton("RemoveHelmetUI", "Remove Helmet UI", SectionPlayer, function()
     print("Not working yet.")
 end)
  

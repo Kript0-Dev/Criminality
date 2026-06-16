@@ -25,6 +25,14 @@ function Aimlock.init()
 		return player.Character:FindFirstChildOfClass("Tool") ~= nil
 	end
 
+    local function lockMouse(boolean:boolean)
+        if boolean then 
+            UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
+        else
+            UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+        end
+    end
+
 	local function isTargetVisible(targetChar)
 		if not targetChar or not targetChar.Parent then return false end
 
@@ -78,31 +86,31 @@ function Aimlock.init()
 	end
 
 	local function updateCameraLock()
-		if not lockedTarget or not lockedTarget.Parent then return end
-		if not hasWeaponEquipped() then 
-			lockedTarget = nil 
-			return 
-		end
-
-		if not isTargetVisible(lockedTarget) then
-			lockedTarget = nil
-			if lockConnection then
-				lockConnection:Disconnect()
-				lockConnection = nil
-			end
-			return
-		end
-
-		local targetPart = lockedTarget:FindFirstChild("HumanoidRootPart")
-		if not targetPart then return end
-
-		local targetPosition = targetPart.Position + Vector3.new(0, 0.5, 0)
-
-		local currentCFrame = camera.CFrame
-		local targetCFrame = CFrame.lookAt(currentCFrame.Position, targetPosition)
-
-		camera.CFrame = currentCFrame:Lerp(targetCFrame, LERP_SPEED)
+	if not lockedTarget or not lockedTarget.Parent then return end
+	if not hasWeaponEquipped() then
+		lockedTarget = nil
+		return
 	end
+
+	if not isTargetVisible(lockedTarget) then
+		lockedTarget = nil
+		return
+	end
+
+	local targetPart = lockedTarget:FindFirstChild("HumanoidRootPart")
+	local rootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+
+	if not targetPart or not rootPart then return end
+
+	local targetPosition = targetPart.Position + Vector3.new(0, 1.5, 0)
+
+	-- Posición actual de la cámara (Roblox la actualiza automáticamente)
+	local cameraPos = camera.CFrame.Position
+
+	local desired = CFrame.lookAt(cameraPos, targetPosition)
+
+	camera.CFrame = camera.CFrame:Lerp(desired, LERP_SPEED)
+end
 
 	-- Apply functions
 	UserInputService.InputBegan:Connect(function(input, gameProcessed)
@@ -112,9 +120,8 @@ function Aimlock.init()
 		if input.UserInputType == Enum.UserInputType.MouseButton2 then
 			if hasWeaponEquipped() then
 				lockedTarget = getClosestCharacterToAim()
-					if lockedTarget then
-                		camera.CameraType = Enum.CameraType.Scriptable
-                   
+					if lockedTarget then         
+                        lockMouse(true)      
                     	if not lockConnection then
                     		lockConnection = RunService.RenderStepped:Connect(updateCameraLock)
                 		end
@@ -131,9 +138,9 @@ function Aimlock.init()
 				lockConnection:Disconnect()
 				lockConnection = nil
 			end
-            
-			camera.CameraType = Enum.CameraType.Custom
 		end
+
+        lockMouse(false)
 	end)
 
 	-- Clean-up
@@ -153,7 +160,6 @@ function Aimlock.init()
 			lockConnection = nil
 		end
 	end)
-
 
 function Aimlock.ToggleAimlock(State:boolean)
 	AimlockEnabled = State
