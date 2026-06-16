@@ -39,7 +39,7 @@ function Misc.AntiFlashbang(state)
         end
     end)
 
-    if state then
+    if state and FlashUI ~= nil then
         FlashUI:Destroy()  
         FlashUI = nil
     end
