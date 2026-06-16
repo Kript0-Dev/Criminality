@@ -23,8 +23,11 @@ function Misc.BetterLight(state:boolean)
 end
 
 function Misc.RemoveHelmetUI()
-    if not PlayerGui then return end
+    local hellmetUI = PlayerGui:FindFirstChild("HelmetOverlayGUI")
 
+    if hellmetUI then
+        hellmetUI.Enabled = false
+    end
 end
 
 function Misc.AntiFlashbang(state)
@@ -39,6 +42,28 @@ function Misc.AntiFlashbang(state)
     if state then
         FlashUI:Destroy()  
         FlashUI = nil
+    end
+end
+
+function Misc.Easylockpick(state)
+    local lockpickUI
+
+    if state then
+        PlayerGui.ChildAdded:Connect(function(child: Instance)
+            if child.Name == "LockpickGUI" then
+                task.wait()
+
+                lockpickUI = child
+                
+                local u1 = lockpickUI:FindFirstChild("MF"):FindFirstChild("LP_Frame"):FindFirstChild("Frames"):FindFirstChild("B1"):FindFirstChild("Bar")
+                local u2 = lockpickUI:FindFirstChild("MF"):FindFirstChild("LP_Frame"):FindFirstChild("Frames"):FindFirstChild("B2"):FindFirstChild("Bar")
+                local u3 = lockpickUI:FindFirstChild("MF"):FindFirstChild("LP_Frame"):FindFirstChild("Frames"):FindFirstChild("B3"):FindFirstChild("Bar")
+
+                u1.Size = UDim2.new(0, 35, 0, 300)
+                u2.Size = UDim2.new(0, 35, 0, 300)
+                u3.Size = UDim2.new(0, 35, 0, 300)
+            end
+        end)
     end
 end
 

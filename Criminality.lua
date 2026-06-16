@@ -26,7 +26,7 @@ end)
 local MarkFriends= UI.createButton("MarkFriends", "Mark Friends", SectionESP,function()
     ESP.MarkFriends()
 end)
- 
+
 -- Aimlock Section
 local SectionAimlock = UI.createSection("Aimlock")
 local TitleAimlock = UI.createSectionTitle("Aimbot", SectionAimlock)
@@ -44,13 +44,13 @@ local SelectFieldOfView = UI.createTextBox("Select", "Field of View:", SectionPl
     workspace.CurrentCamera.FieldOfView = tonumber(text) or 70
 end)
 local EasyLockpick = UI.createToggleButton("EasyLockpicks", false, SectionPlayer, function(state)
-    print("Not working yet.")
+    Misc.Easylockpick(state)
 end)
 local AntiFlash = UI.createToggleButton("Anti-Flashbang", false, SectionPlayer, function(state)
     Misc.AntiFlashbang(state)
 end)
 local RemoveCascoUI = UI.createButton("RemoveHelmetUI", "Remove Helmet UI", SectionPlayer, function()
-    print("Not working yet.")
+    Misc.RemoveHelmetUI()
 end)
  
 -- Lighting Section
