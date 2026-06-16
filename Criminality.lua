@@ -1,7 +1,8 @@
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/UIFramework.lua"))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/ESP.lua"))()
 local Aimlock = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/Aimlock.lua"))()
- 
+local Misc =  loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-Dev/Criminality/refs/heads/main/Misc.lua"))()
+
 -- Start
 UI.init()
 ESP.init()
@@ -46,7 +47,7 @@ local EasyLockpick = UI.createToggleButton("EasyLockpicks", false, SectionPlayer
     print("Not working yet.")
 end)
 local AntiFlash = UI.createToggleButton("Anti-Flashbang", false, SectionPlayer, function(state)
-    print("Not working yet.")
+    Misc.AntiFlashbang(state)
 end)
 local RemoveCascoUI = UI.createButton("RemoveHelmetUI", "Remove Helmet UI", SectionPlayer, function()
     print("Not working yet.")
@@ -56,5 +57,5 @@ end)
 local SectionLight = UI.createSection("Light")
 local TitleLight = UI.createSectionTitle("Light", SectionLight)
 local BetterLight = UI.createToggleButton("BetterLight", false, SectionLight, function(state)
-    print("Upgrading light!")
+    Misc.BetterLight(state)
 end)

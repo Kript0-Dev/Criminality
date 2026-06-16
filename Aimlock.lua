@@ -16,6 +16,15 @@ local AimlockEnabled = false
 
 local LERP_SPEED = 0.6
 
+-- // Functions
+local function LockMouse(boolean:boolean)
+    if boolean then 
+        UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
+    else
+            UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+    end
+end
+
 -- // Module functions
 
 function Aimlock.init()
@@ -25,13 +34,6 @@ function Aimlock.init()
 		return player.Character:FindFirstChildOfClass("Tool") ~= nil
 	end
 
-    local function lockMouse(boolean:boolean)
-        if boolean then 
-            UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
-        else
-            UserInputService.MouseBehavior = Enum.MouseBehavior.Default
-        end
-    end
 
 	local function isTargetVisible(targetChar)
 		if not targetChar or not targetChar.Parent then return false end
@@ -121,7 +123,7 @@ end
 			if hasWeaponEquipped() then
 				lockedTarget = getClosestCharacterToAim()
 					if lockedTarget then         
-                        lockMouse(true)      
+                        LockMouse(true)      
                     	if not lockConnection then
                     		lockConnection = RunService.RenderStepped:Connect(updateCameraLock)
                 		end
@@ -138,9 +140,8 @@ end
 				lockConnection:Disconnect()
 				lockConnection = nil
 			end
+            LockMouse(false)
 		end
-
-        lockMouse(false)
 	end)
 
 	-- Clean-up
