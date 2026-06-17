@@ -31,11 +31,13 @@ end)
 ----------- Aimlock Section -----------
 local SectionAimlock = UI.createSection("Aimlock")
 local TitleAimlock = UI.createSectionTitle("Aimbot", SectionAimlock)
+--[[
 local ToggleAimlock = UI.createToggleButton("Aimlock", false, SectionAimlock, function(state)
     --Aimlock.ToggleAimlock(state)
 end)
+]]--
 local NoRecoil = UI.createToggleButton("NoRecoil", false, SectionAimlock, function(state)
-    --print("Not working yet.")
+    Aimlock.NoRecoil(state)
 end)
  
 ----------- Player Section -----------
