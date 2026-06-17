@@ -126,4 +126,24 @@ function ESP.FindAKSU()
 	end
 end
 
+function ESP.FindCorruptis()
+	for _, dealer in pairs(DealersFolder:GetDescendants()) do
+		if dealer.Name == "Dealer" then 
+			if dealer.CurrentStocks["Corruptis"].Value ~= 0 then
+				local Highlight = Instance.new("Highlight")
+				Highlight.FillTransparency = 1
+				Highlight.Enabled = ESP_Enabled
+				Highlight.OutlineColor = Color3.fromRGB(113, 34, 204)
+				Highlight.Enabled = true
+				Highlight.Parent = dealer
+
+				task.spawn(function()
+					task.wait(120)
+					Highlight:Destroy()
+				end)
+			end
+		end
+	end
+end
+
 return ESP
