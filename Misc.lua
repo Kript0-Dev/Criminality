@@ -8,6 +8,23 @@ local RunService = game:GetService("RunService")
 local Lighting = game:GetService("Lighting")
 
 -- // Functions
+local function AdminWarning()
+    local ScreenGui = Instance.new("ScreenGui")
+    local TextLabel = Instance.new("TextLabel")
+
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+    TextLabel.Size = UDim2.new(0, 400, 0, 100)
+    TextLabel.Font = Enum.Font.Jura
+    TextLabel.TextColor3 = Color3.fromRGB(185, 36, 36)
+    TextLabel.TextScaled = true
+    TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+    TextLabel.Text = "ADMIN JOINED, LEAVE"
+
+    TextLabel.Parent = ScreenGui
+    ScreenGui.Parent = PlayerGui
+end
+
 function Misc.init()
     -- ADMIN KICK --
 
@@ -89,7 +106,8 @@ function Misc.init()
 
     local function kickPlayer()
         if LocalPlayer then
-            LocalPlayer:Kick("Staff joined")
+            AdminWarning()
+            --LocalPlayer:Kick("Staff joined")
         end
     end
 
