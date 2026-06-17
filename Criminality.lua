@@ -7,8 +7,9 @@ local Misc =  loadstring(game:HttpGet("https://raw.githubusercontent.com/Kript0-
 UI.init()
 ESP.init()
 Aimlock.init()
- 
--- ESP Section
+Misc.init()
+
+----------- ESP Section -----------
 local SectionESP = UI.createSection("ESP")
 local TitleESP = UI.createSectionTitle("ESP", SectionESP)
 local ToggleESP = UI.createToggleButton("ESP", false, SectionESP, function(state)
@@ -27,7 +28,7 @@ local MarkFriends= UI.createButton("MarkFriends", "Mark Friends", SectionESP,fun
     ESP.MarkFriends()
 end)
 
--- Aimlock Section
+----------- Aimlock Section -----------
 local SectionAimlock = UI.createSection("Aimlock")
 local TitleAimlock = UI.createSectionTitle("Aimbot", SectionAimlock)
 local ToggleAimlock = UI.createToggleButton("Aimlock", false, SectionAimlock, function(state)
@@ -37,9 +38,12 @@ local NoRecoil = UI.createToggleButton("NoRecoil", false, SectionAimlock, functi
     print("Not working yet.")
 end)
  
--- Player Section
+----------- Player Section -----------
 local SectionPlayer = UI.createSection("Player")
 local TitlePlayer = UI.createSectionTitle("Player", SectionPlayer )
+local EnableFOV = UI.createToggleButton("EnableFOV", false, SectionPlayer, function(state)
+    Aimlock.ToggleFOV(state)
+end)
 local SelectFieldOfView = UI.createTextBox("Select", "Field of View:", SectionPlayer, function(text)
     workspace.CurrentCamera.FieldOfView = tonumber(text) or 70
 end)
@@ -53,9 +57,9 @@ local RemoveCascoUI = UI.createButton("RemoveHelmetUI", "Remove Helmet UI", Sect
     Misc.RemoveHelmetUI()
 end)
  
--- Lighting Section
+----------- Lighting Section -----------
 local SectionLight = UI.createSection("Light")
 local TitleLight = UI.createSectionTitle("Light", SectionLight)
-local BetterLight = UI.createButton("BetterLight", "Better light", SectionLight, function()
-    Misc.BetterLight()
+local BetterLight = UI.createToggleButton("Better Light", false, SectionLight, function(state)
+    Misc.BetterLight(state)
 end)
