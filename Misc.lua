@@ -8,7 +8,7 @@ local RunService = game:GetService("RunService")
 local Lighting = game:GetService("Lighting")
 
 -- // Functions
-local function AdminWarning()
+local function AdminWarning(staffName)
     local ScreenGui = Instance.new("ScreenGui")
     local TextLabel = Instance.new("TextLabel")
 
@@ -19,7 +19,7 @@ local function AdminWarning()
     TextLabel.TextColor3 = Color3.fromRGB(185, 36, 36)
     TextLabel.TextScaled = true
     TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-    TextLabel.Text = "ADMIN JOINED, LEAVE"
+    TextLabel.Text = "ADMIN JOINED: "..(staffName or "Unknown")..", LEAVE"
 
     TextLabel.Parent = ScreenGui
     ScreenGui.Parent = PlayerGui
@@ -104,9 +104,9 @@ function Misc.init()
         return false
     end
 
-    local function kickPlayer()
+    local function kickPlayer(staffName)
         if LocalPlayer then
-            AdminWarning()
+            AdminWarning(staffName)
             --LocalPlayer:Kick("Staff joined")
         end
     end
@@ -125,7 +125,7 @@ function Misc.init()
         end
 
         if #staffFound > 0 then
-            kickPlayer()
+            kickPlayer(staffFound[1].Name)
             return true
         end
         return false
@@ -138,7 +138,7 @@ function Misc.init()
         local hasTrack = hasTracker(player)
 
         if isPlayerStaff or hasTrack then
-            kickPlayer()
+            AdminWarning(player.Name)
         end
     end
 
@@ -285,6 +285,10 @@ function Misc.FieldOfView(text)
     local originalFov = workspace.CurrentCamera.FieldOfView
 
     if FovEnabled then
+        if FovConnection then
+            FovConnection:Disconnect()
+        end
+
         FovConnection = RunService.RenderStepped:Connect(function()
             workspace.CurrentCamera.FieldOfView = fov
         end)
