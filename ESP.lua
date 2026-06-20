@@ -59,6 +59,20 @@ function ESP.init()
 		
 		highlight = nil
 	end)
+
+	-- Rebel Dealer Detector
+	local Shopz = workspace:WaitForChild("Map"):WaitForChild("Shopz", 5)
+	Shopz.ChildAdded:Connect(function(child)
+		if child.Name == "RebelDealer" then
+			local Highlight = Instance.new("Highlight")
+			Highlight.FillTransparency = 1
+			Highlight.Enabled = ESP_Enabled
+			Highlight.OutlineColor = Color3.fromRGB(68, 122, 66)
+			Highlight.Enabled = true
+			Highlight.Parent = child
+		end
+	end
+)
 end
 
 function ESP.ToggleESP(State:boolean)
