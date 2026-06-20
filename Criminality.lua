@@ -10,8 +10,7 @@ Aimlock.init()
 Misc.init()
 
 ----------- ESP Section -----------
-local SectionESP = UI.createSection("ESP")
-local TitleESP = UI.createSectionTitle("ESP", SectionESP)
+local SectionESP = UI.createSection("ESP", "ESP")
 local ToggleESP = UI.createToggleButton("ESP", false, SectionESP, function(state)
     ESP.ToggleESP(state)
 end)
@@ -31,21 +30,31 @@ local MarkFriends= UI.createButton("MarkFriends", "Mark Friends", SectionESP,fun
     ESP.MarkFriends()
 end)
 
------------ Aimlock Section -----------
-local SectionAimlock = UI.createSection("Aimlock")
-local TitleAimlock = UI.createSectionTitle("Aimbot", SectionAimlock)
+----------- Find Weapons Section -----------
+local FindWeapons = UI.createSection("FindWeapons", "Find Weapons")
+for i, weaponData in ipairs(ESP.WeaponList) do
+    UI.createButton("Find"..weaponData[1], "Find "..weaponData[1], FindWeapons, function()
+        ESP.FindWeapon(weaponData)
+    end)
+end
+
+
 --[[
+----------- Aimlock Section -----------
+local SectionAimlock = UI.createSection("Aimlock", "Aimlock")
+
 local ToggleAimlock = UI.createToggleButton("Aimlock", false, SectionAimlock, function(state)
     --Aimlock.ToggleAimlock(state)
 end)
-]]--
+
 local NoRecoil = UI.createToggleButton("NoRecoil", false, SectionAimlock, function(state)
     Aimlock.NoRecoil(state)
 end)
- 
+]]--
+
+
 ----------- Player Section -----------
-local SectionPlayer = UI.createSection("Player")
-local TitlePlayer = UI.createSectionTitle("Player", SectionPlayer )
+local SectionPlayer = UI.createSection("Player", "Player")
 local EnableFOV = UI.createToggleButton("EnableFOV", false, SectionPlayer, function(state)
     Misc.ToggleFOV(state)
 end)
@@ -62,9 +71,14 @@ local RemoveCascoUI = UI.createButton("RemoveHelmetUI", "Remove Helmet UI", Sect
     Misc.RemoveHelmetUI()
 end)
  
------------ Lighting Section -----------
-local SectionLight = UI.createSection("Light")
-local TitleLight = UI.createSectionTitle("Light", SectionLight)
-local BetterLight = UI.createToggleButton("Better Light", false, SectionLight, function(state)
+----------- Misc Section -----------
+local SectionMisc = UI.createSection("Misc", "Misc")
+local BetterLight = UI.createToggleButton("Better Light", false, SectionMisc, function(state)
     Misc.BetterLight(state)
+end)
+local OpenInfYeld = UI.createButton("OpenInfYeld", "Open Infinite Yeld", SectionMisc, function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+local OpenEQRHub = UI.createButton("OpenEQRHub", "Open EQR Hub", SectionMisc, function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/eWYrQFFy"))()
 end)

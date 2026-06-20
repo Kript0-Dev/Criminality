@@ -156,7 +156,7 @@ function UI.init()
 	-- // Testing UI
 end
 
-function UI.createSection(Name:string): Frame
+function UI.createSection(Name:string, Title:string): Frame
 	local Section = Instance.new("Frame")
 	Section.Size = UDim2.new(1, 0, 0, 30)
 	Section.BackgroundTransparency = 1
@@ -181,12 +181,8 @@ function UI.createSection(Name:string): Frame
 	SectionStroke.Parent = Section
 	SectionPadding.Parent = Section
 	SectionLayout.Parent = Section
-	Section.Parent = Container
 
-	return Section
-end
-
-function UI.createSectionTitle(Text:string, parentTo: Frame): TextLabel
+	-- Section Title
 	local SectionTitle = Instance.new("TextLabel")
 	SectionTitle.Size = UDim2.new(1,0,0,20)
 	SectionTitle.BackgroundTransparency = 1
@@ -195,11 +191,12 @@ function UI.createSectionTitle(Text:string, parentTo: Frame): TextLabel
 	SectionTitle.TextSize = 20
 	SectionTitle.FontFace.Bold = true
 	SectionTitle.Font = Enum.Font.Jura
-	SectionTitle.Text = Text
+	SectionTitle.Text = Title
+	SectionTitle.Parent = Section
 
-	SectionTitle.Parent = parentTo
+	Section.Parent = Container
 
-	return SectionTitle
+	return Section
 end
 
 function UI.createToggleButton(Name:string, defaultState:boolean, parentTo, callback)

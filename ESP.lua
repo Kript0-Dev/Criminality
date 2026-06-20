@@ -6,6 +6,13 @@ local ESP_Enabled = false
 local Highlight_Table = {}
 local DealersFolder = workspace:WaitForChild("Map"):WaitForChild("Shopz")
 
+-- // Weapon List
+ESP.WeaponList = {
+	{[1] = "AKS-74U", 	[2] = 30, 	[3] = Color3.new(254, 254, 162)},
+	{[1] = "Corruptis", [2] = 120, 	[3] = Color3.new(113, 34, 204)},
+}
+
+
 function ESP.init()
 
 	-- // Functions
@@ -120,19 +127,19 @@ function ESP.ResetESP()
 	end
 end
 
-function ESP.FindAKSU()
+function ESP.FindWeapon(weaponData)
 	for _, dealer in pairs(DealersFolder:GetDescendants()) do
 		if dealer.Name == "Dealer" then 
-			if dealer.CurrentStocks["AKS-74U"].Value ~= 0 then
+			if dealer.CurrentStocks[weaponData[1]].Value ~= 0 then
 				local Highlight = Instance.new("Highlight")
 				Highlight.FillTransparency = 1
 				Highlight.Enabled = ESP_Enabled
-				Highlight.OutlineColor = Color3.fromRGB(254, 254, 162)
+				Highlight.OutlineColor = weaponData[3]
 				Highlight.Enabled = true
 				Highlight.Parent = dealer
 
 				task.spawn(function()
-					task.wait(30)
+					task.wait(weaponData[2])
 					Highlight:Destroy()
 				end)
 			end
@@ -140,6 +147,7 @@ function ESP.FindAKSU()
 	end
 end
 
+--[[
 function ESP.FindCorruptis()
 	for _, dealer in pairs(DealersFolder:GetDescendants()) do
 		if dealer.Name == "Dealer" then 
@@ -159,5 +167,26 @@ function ESP.FindCorruptis()
 		end
 	end
 end
+
+function ESP.FindAKSU()
+	for _, dealer in pairs(DealersFolder:GetDescendants()) do
+		if dealer.Name == "Dealer" then 
+			if dealer.CurrentStocks["AKS-74U"].Value ~= 0 then
+				local Highlight = Instance.new("Highlight")
+				Highlight.FillTransparency = 1
+				Highlight.Enabled = ESP_Enabled
+				Highlight.OutlineColor = Color3.fromRGB(254, 254, 162)
+				Highlight.Enabled = true
+				Highlight.Parent = dealer
+
+				task.spawn(function()
+					task.wait(30)
+					Highlight:Destroy()
+				end)
+			end
+		end
+	end
+end
+]]--
 
 return ESP
