@@ -234,18 +234,11 @@ end
 
 ----------- ANTI FLASHBANG -----------
 function Misc.AntiFlashbang(state)
-    local FlashUI
-
     PlayerGui.ChildAdded:Connect(function(Child)
-        if Child.Name == "FlasedGUI" then
-            FlashUI = Child
+        if Child.Name == "FlashedGUI" and state then
+            Child:Destroy()
         end
     end)
-
-    if state and FlashUI ~= nil then
-        FlashUI:Destroy()  
-        FlashUI = nil
-    end
 end
 
 function Misc.Easylockpick(state)
