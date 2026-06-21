@@ -8,8 +8,13 @@ local DealersFolder = workspace:WaitForChild("Map"):WaitForChild("Shopz")
 
 -- // Weapon List
 ESP.WeaponList = {
-	{[1] = "AKS-74U", 	[2] = 30, 	[3] = Color3.new(254, 254, 162)},
-	{[1] = "Corruptis", [2] = 120, 	[3] = Color3.new(113, 34, 204)},
+	{[1] = "AKS-74U", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Corruptis", [2] = 120, 	[3] = Color3.fromRGB(113, 34, 204)},
+	{[1] = "SCAR-H-1", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Tommy", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "RPG-7", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Mare", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Deagle", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
 }
 
 
