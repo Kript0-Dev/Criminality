@@ -83,9 +83,31 @@ function ESP.init()
 			Highlight.Enabled = true
 			Highlight.Parent = child
 		end
+	end)
+
+	-- Corruptis Detector 
+	for _, dealer in pairs(DealersFolder:GetDescendants()) do
+		if dealer.Name == "Dealer" then
+			dealer.CurrentStocks["Corruptis"].Changed:Connect(function(value)
+				if value == 0 then return end
+
+				local Highlight = Instance.new("Highlight")
+				Highlight.FillTransparency = 1
+				Highlight.Enabled = ESP_Enabled
+				Highlight.OutlineColor = Color3.fromRGB(113, 34, 204)
+				Highlight.Enabled = true
+				Highlight.Parent = dealer
+
+				local Sound = Instance.new("Sound")
+				Sound.SoundId = "rbxassetid://18597353491"
+				Sound.Volume = 1
+				Sound.Parent = LocalPlayer:WaitForChild("PlayerGui")
+				Sound:Play()
+			end)
+		end
 	end
-)
 end
+
 
 function ESP.ToggleESP(State:boolean)
 	ESP_Enabled = State
@@ -151,47 +173,5 @@ function ESP.FindWeapon(weaponData)
 		end
 	end
 end
-
---[[
-function ESP.FindCorruptis()
-	for _, dealer in pairs(DealersFolder:GetDescendants()) do
-		if dealer.Name == "Dealer" then 
-			if dealer.CurrentStocks["Corruptis"].Value ~= 0 then
-				local Highlight = Instance.new("Highlight")
-				Highlight.FillTransparency = 1
-				Highlight.Enabled = ESP_Enabled
-				Highlight.OutlineColor = Color3.fromRGB(113, 34, 204)
-				Highlight.Enabled = true
-				Highlight.Parent = dealer
-
-				task.spawn(function()
-					task.wait(120)
-					Highlight:Destroy()
-				end)
-			end
-		end
-	end
-end
-
-function ESP.FindAKSU()
-	for _, dealer in pairs(DealersFolder:GetDescendants()) do
-		if dealer.Name == "Dealer" then 
-			if dealer.CurrentStocks["AKS-74U"].Value ~= 0 then
-				local Highlight = Instance.new("Highlight")
-				Highlight.FillTransparency = 1
-				Highlight.Enabled = ESP_Enabled
-				Highlight.OutlineColor = Color3.fromRGB(254, 254, 162)
-				Highlight.Enabled = true
-				Highlight.Parent = dealer
-
-				task.spawn(function()
-					task.wait(30)
-					Highlight:Destroy()
-				end)
-			end
-		end
-	end
-end
-]]--
 
 return ESP

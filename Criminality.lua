@@ -20,14 +20,6 @@ end)
 local ResetESP = UI.createButton("Reset", "Reset ESP", SectionESP, function()
     ESP.ResetESP()
 end)
---[[
-local FindAKSU = UI.createButton("FindAksu", "Find AKS-74U", SectionESP,function()
-    ESP.FindAKSU()
-end)
-local FindCorruptis = UI.createButton("FindCorruptis", "Find Corruptis", SectionESP,function()
-    ESP.FindCorruptis()
-end)
-]]--
 local MarkFriends= UI.createButton("MarkFriends", "Mark Friends", SectionESP,function()
     ESP.MarkFriends()
 end)
@@ -39,21 +31,6 @@ for i, weaponData in ipairs(ESP.WeaponList) do
         ESP.FindWeapon(weaponData)
     end)
 end
-
-
---[[
------------ Aimlock Section -----------
-local SectionAimlock = UI.createSection("Aimlock", "Aimlock")
-
-local ToggleAimlock = UI.createToggleButton("Aimlock", false, SectionAimlock, function(state)
-    --Aimlock.ToggleAimlock(state)
-end)
-
-local NoRecoil = UI.createToggleButton("NoRecoil", false, SectionAimlock, function(state)
-    Aimlock.NoRecoil(state)
-end)
-]]--
-
 
 ----------- Player Section -----------
 local SectionPlayer = UI.createSection("Player", "Player")

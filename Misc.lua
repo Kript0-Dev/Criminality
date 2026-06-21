@@ -269,6 +269,11 @@ local FovConnection = nil
 
 function Misc.ToggleFOV(state)
     FovEnabled = state
+
+    if not FovEnabled and FovConnection then
+        FovConnection:Disconnect()
+        FovConnection = nil
+    end
 end
 
 function Misc.FieldOfView(text)
