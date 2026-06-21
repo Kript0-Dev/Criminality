@@ -235,19 +235,19 @@ function UI.createToggleButton(Name:string, defaultState:boolean, parentTo, call
 
 	-- Press event
 	Button.MouseButton1Up:Connect(function()
-		-- Troll
+		--[[ Troll
 		local Sound = Instance.new("Sound")
 		Sound.SoundId = "rbxassetid://84153865596533"
 		Sound.Volume = 1
 		Sound.Parent = Button
 		Sound:Play()
-
+		]]--
+		
 		-- Toggle state
 		state = not state
 		updateText()
 		callback(state)
 	end)
-
 	return Button
 end
 
