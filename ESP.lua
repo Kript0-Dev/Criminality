@@ -8,13 +8,15 @@ local DealersFolder = workspace:WaitForChild("Map"):WaitForChild("Shopz")
 
 -- // Weapon List
 ESP.WeaponList = {
-	{[1] = "AKS-74U", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
-	{[1] = "Corruptis", [2] = 120, 	[3] = Color3.fromRGB(113, 34, 204)},
-	{[1] = "SCAR-H-1", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
-	{[1] = "Tommy", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
-	{[1] = "RPG-7", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
-	{[1] = "Mare", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
-	{[1] = "Deagle", 	[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "AKS-74U", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Corruptis", 	[2] = 120, 	[3] = Color3.fromRGB(113, 34, 204)	},
+	{[1] = "SlayerArmor", 	[2] = 120, 	[3] = Color3.fromRGB(55, 17, 224)	},
+	{[1] = "SlayerSword", 	[2] = 120, 	[3] = Color3.fromRGB(40, 228, 241)	},
+	{[1] = "SCAR-H-1", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Tommy", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "RPG-7", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Mare", 			[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
+	{[1] = "Deagle", 		[2] = 30, 	[3] = Color3.fromRGB(254, 254, 162)},
 }
 
 
@@ -100,6 +102,47 @@ function ESP.init()
 
 				local Sound = Instance.new("Sound")
 				Sound.SoundId = "rbxassetid://18597353491"
+				Sound.Volume = 1
+				Sound.Parent = LocalPlayer:WaitForChild("PlayerGui")
+				Sound:Play()
+			end)
+		end
+	end
+
+	-- Slayer Detector
+	for _, dealer in pairs(DealersFolder:GetDescendants()) do
+		if dealer.Name == "Dealer" then
+			-- Slayer Armor
+			dealer.CurrentStocks["SlayerArmor"].Changed:Connect(function(value)
+				if value == 0 then return end
+
+				local Highlight = Instance.new("Highlight")
+				Highlight.FillTransparency = 1
+				Highlight.Enabled = ESP_Enabled
+				Highlight.OutlineColor = Color3.fromRGB(55, 17, 224)
+				Highlight.Enabled = true
+				Highlight.Parent = dealer
+
+				local Sound = Instance.new("Sound")
+				Sound.SoundId = "rbxassetid://140089926923698"
+				Sound.Volume = 1
+				Sound.Parent = LocalPlayer:WaitForChild("PlayerGui")
+				Sound:Play()
+			end)
+
+			-- Slayer Sword
+			dealer.CurrentStocks["SlayerSword"].Changed:Connect(function(value)
+				if value == 0 then return end
+
+				local Highlight = Instance.new("Highlight")
+				Highlight.FillTransparency = 1
+				Highlight.Enabled = ESP_Enabled
+				Highlight.OutlineColor = Color3.fromRGB(40, 228, 241)
+				Highlight.Enabled = true
+				Highlight.Parent = dealer
+
+				local Sound = Instance.new("Sound")
+				Sound.SoundId = "rbxassetid://136217358874957"
 				Sound.Volume = 1
 				Sound.Parent = LocalPlayer:WaitForChild("PlayerGui")
 				Sound:Play()
