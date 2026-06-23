@@ -113,7 +113,7 @@ function ESP.init()
 	for _, dealer in pairs(DealersFolder:GetDescendants()) do
 		if dealer.Name == "Dealer" then
 			-- Slayer Armor
-			dealer.CurrentStocks["SlayerArmor"].Changed:Connect(function(value)
+			dealer.CurrentStocks["SlayerArmour"].Changed:Connect(function(value)
 				if value == 0 then return end
 
 				local Highlight = Instance.new("Highlight")
